@@ -16,29 +16,28 @@ public class App {
     private static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        do {int repeatGame;
+        do {
+            int repeatGame; //запрос на повтор игры
             String winPlayer = null; //для записи выигравшего
             boolean gameNotOver = true; //игра продолжается
             initMap(); //заполнение игрового поля
             do {
                 for (String player : PLAYERS) {
                     move(player);
-                    boolean check = checkWin();
-                    if (check) {
+                    if (checkWin()) {
                         winPlayer = player;
                         gameNotOver = false;
                         break;
                     }
-                    check = checkMapFilling();
-                    if (check) {
+                    if (checkMapFilling()) {
                         winPlayer = "Ничья";
                         gameNotOver = false;
                         break;
                     }
                 }
             } while (gameNotOver);
-            System.out.println("Выграл игрок" + winPlayer);
-            System.out.println("Повторить игру? любой знак - да / 0-нет ");
+            System.out.println("Выграл игрок: " + winPlayer);
+            System.out.print("Повторить игру? любое число - да / 0-нет ");
             repeatGame = sc.nextInt();
             if (repeatGame == 0){
                 System.out.println("До встречи.");
@@ -90,7 +89,7 @@ public class App {
     }
 
     /**
-     * Ход игрока AI
+     * Ход игрока AI старый вариант
      */
     private static void aiMove() {
         do {
@@ -99,11 +98,10 @@ public class App {
             if (map[x][y].equals(mapPlaceholder)) {
                 map[x][y] = AI;
                 System.out.println("Бот сделал ход X-" + x+ " Y-" + y);
+                printMap();
                 break;
             }
         } while (true);
-
-        printMap();
     }
 
     /**
@@ -129,7 +127,7 @@ public class App {
     private static boolean checkMapFilling() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                if (map[1][j].equals(mapPlaceholder)) {
+                if (map[i][j].equals(mapPlaceholder)) {
                     return false;
                 }
             }
