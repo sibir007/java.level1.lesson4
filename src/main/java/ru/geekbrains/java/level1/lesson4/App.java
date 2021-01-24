@@ -15,6 +15,9 @@ public class App {
     private static final Random rn = new Random();
     private static final Scanner sc = new Scanner(System.in);
 
+    /**
+     *Коментарий без смысла
+     */
     public static void main(String[] args) {
         do {
             int repeatGame; //запрос на повтор игры
